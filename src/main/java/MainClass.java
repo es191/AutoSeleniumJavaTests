@@ -31,10 +31,7 @@ public class MainClass {
 
         driver.get("https://www.alza.cz/");
 
-        //MainPage mainPage = new MainPage(driver);
-
-        // так выглядит PAGE FACTORY CLASS
-        MainPage mainPage = PageFactory.initElements(driver, MainPage.class);
+        MainPage mainPage = new MainPage(driver);
         mainPage.clickPopUpWindow();
         mainPage.clickFooter();
 
@@ -51,8 +48,6 @@ public class MainClass {
         productsOnThePage.selectCheckBox("chb-producer-1835");
         productsOnThePage.selectCheckBox("chb-producer-1287");
         productsOnThePage.selectCheckBox("chb-producer-1518");
-
-        System.out.println(driver.findElement(By.xpath("//div[@class='category-description']//p")).getAttribute("innerText"));
 
         productsOnThePage.choosingProduct();
 
