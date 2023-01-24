@@ -4,21 +4,20 @@ import org.openqa.selenium.WebDriver;
 public class ProductsOnThePage {
     private static WebDriver driver;
 
-    public ProductsOnThePage(WebDriver driver) {this.driver = driver;}
+    public ProductsOnThePage(WebDriver driver) {
+        ProductsOnThePage.driver = driver;}
 
-    private By fromExpenSorting = By.xpath("//a[@id='ui-id-4']");
-    private By expenComputer = By.xpath("//a[text()='Alza Studio RTX4090']");
-    private By paragraf = By.xpath("//div[@class='category-description']//p");
+    private final By fromExpenSorting = By.xpath("//a[@id='ui-id-4']");
+    private final By expenComputer = By.xpath("//a[text()='Alza Studio RTX4090']");
 
-
-    public ProductsOnThePage sortingExp () {
+    public void sortingExp () {
         driver.findElement(fromExpenSorting).click();
-        return new ProductsOnThePage(driver);
+        new ProductsOnThePage(driver);
     }
 
-    public OurProduct choosingProduct () {
+    public void choosingProduct () {
         driver.findElement(expenComputer).click();
-        return new OurProduct(driver);
+        new OurProduct(driver);
     }
 
     public static void selectCheckBox (String id) {
@@ -26,10 +25,5 @@ public class ProductsOnThePage {
         if (!driver.findElement(By.xpath(String.format(cbXpath, id))).isSelected()){
             driver.findElement(By.xpath(String.format(cbXpath,id))).click();
         }
-    }
-
-    public ProductsOnThePage getParagragText(String attribute) {
-       driver.findElement(paragraf).getAttribute("innerText");
-       return new ProductsOnThePage(driver);
     }
 }

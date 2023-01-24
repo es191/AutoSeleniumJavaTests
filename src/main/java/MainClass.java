@@ -1,32 +1,21 @@
-import com.sun.deploy.cache.Cache;
-import dev.failsafe.internal.util.Assert;
 import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.devtools.v85.indexeddb.model.Key;
 import org.openqa.selenium.interactions.Actions;
-import org.openqa.selenium.remote.Augmenter;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-
-import javax.swing.*;
-import java.io.File;
 import java.io.IOException;
 import java.time.Duration;
-import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MainClass {
 
     static WebDriver driver;
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\evgen\\IdeaProjects\\testSelenium\\drivers\\chromedriver.exe");
 
         driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
         driver.manage().window().maximize();
 
         driver.get("https://www.alza.cz/");
@@ -45,9 +34,9 @@ public class MainClass {
         ProductsOnThePage productsOnThePage = PageFactory.initElements(driver, ProductsOnThePage.class);
         productsOnThePage.sortingExp();
 
-        productsOnThePage.selectCheckBox("chb-producer-1835");
-        productsOnThePage.selectCheckBox("chb-producer-1287");
-        productsOnThePage.selectCheckBox("chb-producer-1518");
+        ProductsOnThePage.selectCheckBox("chb-producer-1835");
+        ProductsOnThePage.selectCheckBox("chb-producer-1287");
+        ProductsOnThePage.selectCheckBox("chb-producer-1518");
 
         productsOnThePage.choosingProduct();
 
@@ -58,7 +47,7 @@ public class MainClass {
         insuranceInCart.continueBuying();
 
         FinalCart finalCart = PageFactory.initElements(driver, FinalCart.class);
-        finalCart.typingNewItem();
+        finalCart.screenShot();
 
         driver.quit();
 

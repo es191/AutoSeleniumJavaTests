@@ -1,22 +1,24 @@
+import com.sun.deploy.cache.Cache;
 import org.openqa.selenium.*;
-
 import java.io.File;
+import java.io.IOException;
+
+import static com.sun.deploy.cache.Cache.copyFile;
 
 public class FinalCart {
-    private WebDriver driver;
+    private static WebDriver driver = null;
 
-    public FinalCart (WebDriver driver) {this.driver = driver;}
+    public FinalCart (WebDriver driver) {
+        FinalCart.driver = driver;}
 
-    private By addingNewItem = By.xpath("//span[text()='Přidat zboží']");
-    private By typingText = By.xpath("//input[@id='inputByCode']");
-    private By newItemFromList = By.xpath("//span[text()='(MR066e1u)']");
 
-    public FinalCart typingNewItem () {
-        driver.findElement(addingNewItem).click();
-        driver.findElement(typingText).sendKeys("Razer DeathAdder V2");
-        driver.findElement(newItemFromList).click();
-        return new FinalCart(driver);
-    }
+
+    public static void screenShot() throws IOException {
+    File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+        Cache FileUtils = null;
+        copyFile(scrFile, new File("c:\\Users\\evgen\\IdeaProjects\\testSelenium\\src\\screenshots\\'screenshot.png')"));
+    };
+
 }
 
 
