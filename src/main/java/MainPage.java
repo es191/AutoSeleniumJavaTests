@@ -1,5 +1,7 @@
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
 
 public class MainPage {
     private final WebDriver driver;
@@ -26,4 +28,5 @@ public class MainPage {
         driver.findElement(mainCategory).click();
         return new ProductsOnThePage(driver);
     }
+
 }

@@ -20,6 +20,8 @@ public class MainClass {
 
         driver.get("https://www.alza.cz/");
 
+
+        //1
         MainPage mainPage = new MainPage(driver);
         mainPage.clickPopUpWindow();
         mainPage.clickFooter();
@@ -31,22 +33,25 @@ public class MainClass {
 
         mainPage.findCategory();
 
-        ProductsOnThePage productsOnThePage = PageFactory.initElements(driver, ProductsOnThePage.class);
+        //2
+        ProductsOnThePage productsOnThePage = new ProductsOnThePage(driver);
         productsOnThePage.sortingExp();
 
         ProductsOnThePage.selectCheckBox("chb-producer-1835");
         ProductsOnThePage.selectCheckBox("chb-producer-1287");
         ProductsOnThePage.selectCheckBox("chb-producer-1518");
-
         productsOnThePage.choosingProduct();
 
-        OurProduct ourProduct = PageFactory.initElements(driver, OurProduct.class);
+        //3
+        OurProduct ourProduct = new OurProduct(driver);
         ourProduct.confirmationOfProduct();
 
-        InsuranceInCart insuranceInCart = PageFactory.initElements(driver, InsuranceInCart.class);
+        //4
+        InsuranceInCart insuranceInCart = new InsuranceInCart(driver);
         insuranceInCart.continueBuying();
 
-        FinalCart finalCart = PageFactory.initElements(driver, FinalCart.class);
+        //5
+        FinalCart finalCart = new FinalCart(driver);
         finalCart.screenShot();
 
         driver.quit();
